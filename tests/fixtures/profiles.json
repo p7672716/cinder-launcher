@@ -1,0 +1,49 @@
+{
+  "fixtureSchema": 1,
+  "purpose": "Synthetic P0/P1 model inputs only; not a product persistence contract",
+  "selectedBuild": null,
+  "instances": [
+    {
+      "id": "test-a-id",
+      "name": "Pack A",
+      "createdAt": "2026-01-01T00:00:00Z",
+      "target": {
+        "minecraftVersion": "1.21.1",
+        "loader": {
+          "kind": "neoforge",
+          "version": null
+        }
+      },
+      "source": "self-authored"
+    },
+    {
+      "id": "test-b-id",
+      "name": "Pack B",
+      "createdAt": "2026-01-02T00:00:00Z",
+      "target": {
+        "minecraftVersion": "1.21.1",
+        "loader": {
+          "kind": "neoforge",
+          "version": null
+        }
+      },
+      "source": "self-authored"
+    }
+  ],
+  "identityChecks": {
+    "sameNameDifferentIds": [
+      {
+        "id": "test-a-id",
+        "name": "Identical"
+      },
+      {
+        "id": "test-b-id",
+        "name": "Identical"
+      }
+    ],
+    "duplicateId": [
+      "test-a-id",
+      "test-a-id"
+    ]
+  }
+}

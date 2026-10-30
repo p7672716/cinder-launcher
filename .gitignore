@@ -1,0 +1,15 @@
+/target/
+/result
+*.swp
+# Local service credentials and developer-only configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+services.json
+credentials.json
+# Local Minecraft data and build output
+/instances/
+/downloads/
+*.log

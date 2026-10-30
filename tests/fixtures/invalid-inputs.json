@@ -1,0 +1,85 @@
+{
+  "fixtureSchema": 1,
+  "purpose": "Negative-only values for name/path and secret-redaction tests; not real credentials",
+  "invalidNames": [
+    {
+      "id": "empty",
+      "value": ""
+    },
+    {
+      "id": "spaces",
+      "value": "   "
+    },
+    {
+      "id": "control",
+      "value": "Pack\u0000Name"
+    },
+    {
+      "id": "newline",
+      "value": "Pack\nName"
+    }
+  ],
+  "pathCandidates": [
+    {
+      "id": "parent",
+      "path": "../outside.jar",
+      "expected": "reject"
+    },
+    {
+      "id": "nestedParent",
+      "path": "mods/../../outside.jar",
+      "expected": "reject"
+    },
+    {
+      "id": "unixAbsolute",
+      "path": "/tmp/outside.jar",
+      "expected": "reject"
+    },
+    {
+      "id": "windowsDriveAbsolute",
+      "path": "C:\\Temp\\outside.jar",
+      "expected": "rejectOnWindows"
+    },
+    {
+      "id": "windowsUNC",
+      "path": "\\\\server\\share\\outside.jar",
+      "expected": "rejectOnWindows"
+    },
+    {
+      "id": "windowsDevice",
+      "path": "\\\\?\\C:\\Temp\\outside.jar",
+      "expected": "rejectOnWindows"
+    },
+    {
+      "id": "windowsReserved",
+      "path": "mods/CON.jar",
+      "expected": "rejectOnWindows"
+    },
+    {
+      "id": "windowsReservedNul",
+      "path": "mods/NUL",
+      "expected": "rejectOnWindows"
+    },
+    {
+      "id": "trailingDot",
+      "path": "mods/name.",
+      "expected": "rejectOnWindows"
+    },
+    {
+      "id": "trailingSpace",
+      "path": "mods/name. ",
+      "expected": "rejectOnWindows"
+    },
+    {
+      "id": "ordinaryRelative",
+      "path": "mods/Example.jar",
+      "expected": "acceptIfWithinFixtureRoot"
+    }
+  ],
+  "caseInsensitiveCollision": {
+    "first": "mods/Example.jar",
+    "second": "mods/example.jar",
+    "expectedOnWindows": "reject"
+  },
+  "fakeSecretMarker": "CINDER_FAKE_SECRET_FOR_TEST_ONLY"
+}

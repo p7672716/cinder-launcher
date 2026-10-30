@@ -1,0 +1,81 @@
+{
+  "fixtureSchema": 1,
+  "purpose": "Failure-injection declarations for future test adapters; no operations run here",
+  "scenarios": [
+    {
+      "id": "writeFailure",
+      "caseIds": [
+        "P1-03",
+        "P1-04"
+      ],
+      "phase": "beforeFinalCommit",
+      "inject": "writeError",
+      "expect": "oldProfileStillValid"
+    },
+    {
+      "id": "renameFailure",
+      "caseIds": [
+        "P1-04"
+      ],
+      "phase": "commitRename",
+      "inject": "permissionDenied",
+      "expect": "oldNameAfterRestart"
+    },
+    {
+      "id": "interruptB",
+      "caseIds": [
+        "P1-08"
+      ],
+      "phase": "createInstanceB",
+      "inject": "cancel",
+      "expect": "instanceAByteUnchanged"
+    },
+    {
+      "id": "incompleteTemporaryFile",
+      "caseIds": [
+        "P1-09"
+      ],
+      "phase": "beforeFinalCommit",
+      "inject": "truncatedTemporaryContent",
+      "expect": "noReadyStateFromTemp"
+    },
+    {
+      "id": "concurrentMutations",
+      "caseIds": [
+        "P1-14",
+        "P1-15"
+      ],
+      "phase": "activeOperation",
+      "inject": "simultaneousCreateDeleteLaunch",
+      "expect": "noUnsafeOverlap"
+    },
+    {
+      "id": "diskFull",
+      "caseIds": [
+        "P1-16"
+      ],
+      "phase": "writeStagedFile",
+      "inject": "diskFull",
+      "expect": "oldFileByteUnchanged"
+    },
+    {
+      "id": "lockedFile",
+      "caseIds": [
+        "P1-16"
+      ],
+      "phase": "replaceFile",
+      "inject": "resourceBusy",
+      "expect": "oldFileByteUnchanged"
+    },
+    {
+      "id": "deleteError",
+      "caseIds": [
+        "P1-17"
+      ],
+      "phase": "removeInstance",
+      "inject": "permissionDenied",
+      "expect": "residualFilesTracked"
+    }
+  ],
+  "note": "Inject only inside a dedicated temporary directory; Windows file locking still requires separate native verification"
+}

@@ -1,0 +1,4 @@
+CINDER_SYNTHETIC_MOD_A
+NOT_A_JAR_OR_MINECRAFT_MOD
+instance=test-a-id
+revision=1

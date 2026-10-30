@@ -1,0 +1,3 @@
+CINDER_FAKE_WORLD_B
+PRESERVE_CONTENTS
+instance=test-b-id
